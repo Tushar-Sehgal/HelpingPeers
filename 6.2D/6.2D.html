@@ -195,9 +195,9 @@
                 <ul>
                     <li><strong>Download and Import:</strong> Download the source code attached to the task. Create a
                         new Microsoft Visual Studio project and import the provided source code files: <a
-                            href="D:\WORK\SIT221\1.2D\6.2D\Tester.cs" class="code-link">Tester.cs</a>, <a
-                            href="D:\WORK\SIT221\1.2D\6.2D\TestGenerator.cs" class="code-link">Generator.cs</a>, and <a
-                            href="D:\WORK\SIT221\1.2D\6.2D\BoxOfCoins.cs" class="code-link">BoxOfCoins.cs</a>. Ensure
+                            href="Tester.cs" class="code-link">Tester.cs</a>, <a
+                            href="TestGenerator.cs" class="code-link">Generator.cs</a>, and <a
+                            href="BoxOfCoins.cs" class="code-link">BoxOfCoins.cs</a>. Ensure
                         the project compiles without errors. This setup will provide a framework within which you can
                         develop and test your algorithm, ensuring that all necessary components are in place and
                         functioning correctly.</li>
@@ -267,7 +267,7 @@
                 <h3>Working of the Code</h3>
                 <div class="visualization">
                     <h4>Initialization of the DP Table</h4>
-                    <img src="D:\WORK\SIT221\1.2D\6.2D\vis1.png" alt="Initialization of DP Table">
+                    <img src="vis1.png" alt="Initialization of DP Table">
                 </div>
                 <p>During initialization, the DP table is filled with the values of individual boxes along the diagonal,
                     representing subarrays of length 1. This step is essential for setting up the base cases that the
@@ -276,7 +276,7 @@
 
                 <div class="visualization">
                     <h4>Filling the DP Table Using Dynamic Programming</h4>
-                    <img src="D:\WORK\SIT221\1.2D\6.2D\vis2.png" alt="Filling the DP Table Using Dynamic Programming">
+                    <img src="vis2.png" alt="Filling the DP Table Using Dynamic Programming">
                 </div>
                 <p>To fill the DP table, the algorithm iterates through subarrays of increasing length and computes the
                     maximum difference for each subarray using the formula: `diff[i, j] = max(boxes[i] - diff[i+1, j],
@@ -318,7 +318,7 @@
             <div class="concept-box">
                 <ul>
                     <li><strong>Use the Tester Class:</strong> As you progress with the implementation, use the <a
-                            href="D:\WORK\SIT221\1.2D\6.2D\Tester.cs" class="code-link">Tester</a> class to test your
+                            href="Tester.cs" class="code-link">Tester</a> class to test your
                         algorithm for potential logical issues and runtime errors. Testing is crucial to ensure the
                         correctness and efficiency of your algorithm. The `Tester` class provides a framework for
                         systematically testing your implementation, helping you identify and fix any issues that arise
