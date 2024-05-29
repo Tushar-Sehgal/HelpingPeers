@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8.2HD: Coin Representation Guide</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #121212, #2c3e50);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2980b9, #2c3e50);
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            animation: fadeInLeft 1s ease-in-out;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+        }
+
+        ul li,
+        ol li {
+            margin: 10px 0;
+        }
+
+        .concept-box {
+            border: 1px solid #444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 15px;
+            background: #2b2b2b;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            animation: fadeInRight 1s ease-in-out;
+        }
+
+        .code-link {
+            font-family: monospace;
+            background: #333;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .visualization {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .visualization img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Task 8.2HD: Coin Representation Guide</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>Pseudocode and Explanation</h2>
+            <div class="concept-box">
+                <p>First, I created a function called Solve that will help determine the number of
+                    ways to represent a
+                    given number Z. I start by addressing the simplest cases, which are the base
+                    cases. If Z is less
+                    than 2, there's only one way to represent it, so I had the function return 1 in
+                    this case.</p>
+                <p>Next, I made the function efficient by avoiding repeated calculations. To achieve
+                    this, I used a
+                    dictionary called memo to store results that are already computed. Before
+                    performing any new
+                    calculations, it checks if the result for the current Z is already in the memo.
+                    If it is, it simply
+                    returns that stored result.</p>
+                <p>Now, the function handles the main part of the problem where it decides how to
+                    split Z based on
+                    whether it's even or odd:</p>
+                <ul>
+                    <li>If Z is even, it breaks it down into two parts: Z/2 and (Z/2) - 1. It calls
+                        Solve on both of
+                        these parts and adds their results together.</li>
+                    <li>If Z is odd, it simplifies the problem by solving for (Z - 1) / 2 instead.
+                    </li>
+                </ul>
+                <p>After calculating the result for the current Z, the function stores it in the
+                    memo dictionary so it
+                    can reuse the value later if needed. Finally, it returns the result.</p>
+                <p>Here’s how it looks step-by-step in pseudocode:</p>
+                <ol>
+                    <li>Base Case: If Z is less than 2, return 1.</li>
+                    <li>Memoization Check: If the result for Z is already in memo, return that
+                        result.</li>
+                    <li>Recursive Calculation:
+                        <ul>
+                            <li>If Z is even, set the result to Solve(Z / 2) + Solve((Z / 2) - 1).
+                            </li>
+                            <li>If Z is odd, set the result to Solve((Z - 1) / 2).</li>
+                        </ul>
+                    </li>
+                    <li>Store in Memo: Save the result in memo for future use.</li>
+                    <li>Return Result: Return the computed result.</li>
+                </ol>
+                <p>By following these steps, I ensure the function is efficient and avoids
+                    unnecessary calculations.
+                    This method combines the simplicity of recursion with the power of memoization
+                    to solve the problem
+                    effectively. For a visual explanation, check out this video:</p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/oBt53YbR9Kk?si=TOMXameh9Ztjrk15"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h2>Understanding Base Algorithms</h2>
+            <div class="concept-box">
+                <p>The algorithm uses a recursive approach to solve the problem. The base case
+                    checks if Z is less than
+                    2, returning 1 since there's only one way to represent such numbers. For larger
+                    values, the solution
+                    splits into two cases based on the parity of Z. For even Z, the result is the
+                    sum of the solutions
+                    for Z/2 and (Z/2) - 1. For odd Z, it reduces to solving for (Z - 1) / 2.
+                    Memoization is employed to
+                    store and reuse computed results, significantly reducing redundant calculations.
+                </p>
+                <div class="visualization">
+                    <img src="D:\WORK\SIT221\1.2D\8.2HD\vis1.png" alt="Visualization of Recursive Steps for Z = 12">
+                    <h4>Visualization of Recursive Steps</h4>
+                </div>
+                <p>Learn more about
+                    recursion and memoization <a href="https://www.interviewcake.com/concept/java/memoization">here</a>
+                    and <a href="https://www.geeksforgeeks.org/what-is-memoization-a-complete-tutorial/">here</a>.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Why Divide Z into Z/2 and (Z/2) - 1 when Even, and (Z - 1)/2 when Odd?</h2>
+            <div class="concept-box">
+                <p>The division strategy of Z into Z/2 and (Z/2) - 1 when Z is even, and into (Z - 1)/2 when Z is odd,
+                    is driven by the need to minimize redundant calculations and leverage the properties of the numbers
+                    involved.</p>
+                <h3>When Z is Even:</h3>
+                <p>For even numbers, dividing Z into two parts: Z/2 and (Z/2) - 1, ensures that the problem is broken
+                    into two subproblems with one even and one odd number. This strategy is beneficial because:</p>
+                <ul>
+                    <li><strong>Reduction of Redundant Calculations:</strong> By splitting into Z/2 and (Z/2) - 1, the
+                        function avoids repeated calculations that might occur if both parts were even. Even numbers
+                        tend to break down into smaller even numbers, leading to a repetitive pattern without much
+                        variation.</li>
+                    <li><strong>Optimal Subproblem Sizes:</strong> This division method ensures that the sizes of the
+                        subproblems are balanced. By having one even and one odd part, the recursion tree becomes more
+                        diverse, avoiding scenarios where the function repeatedly halves the number without making
+                        substantial progress.</li>
+                    <li><strong>Efficient Memoization:</strong> This approach helps in efficiently storing and
+                        retrieving results from the memoization dictionary. The diverse nature of the subproblems
+                        increases the likelihood that previously computed results can be reused, reducing the overall
+                        number of calculations needed.</li>
+                </ul>
+                <h3>When Z is Odd:</h3>
+                <p>For odd numbers, simplifying the problem by solving for (Z - 1) / 2 is effective because:</p>
+                <ul>
+                    <li><strong>Simplification to an Even Number:</strong> Subtracting one from an odd number makes it
+                        even. Even numbers are generally easier to handle and split further, making the problem more
+                        manageable.</li>
+                    <li><strong>Balanced Approach:</strong> This approach ensures that the recursive steps are
+                        consistent and balanced, maintaining a steady reduction in the problem size.</li>
+                    <li><strong>Reduced Complexity:</strong> By handling the odd case in this manner, the complexity of
+                        the recursive function is kept in check, ensuring that the function converges more quickly to
+                        the base case.</li>
+                </ul>
+                <p>Overall, this strategy of dividing Z into one even and one odd part when Z is even, and reducing by
+                    one to handle odd numbers, strikes a balance between complexity and efficiency. It ensures that the
+                    recursive function makes consistent progress and that the memoization dictionary can be used
+                    effectively to minimize redundant calculations.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Algorithm Space/Time Complexity</h2>
+            <div class="concept-box">
+                <h3>Time Complexity</h3>
+                <p>The time complexity of the algorithm is O(log n), where n is the value of Z. This
+                    is because Solve is
+                    called recursively for Z/2 and Z/2 – 1 if Z is even and (Z-1)/2 if Z is odd.</p>
+                <h3>Space Complexity</h3>
+                <p>The space complexity is also O(log n) due to the storage requirements of the memo
+                    dictionary, which
+                    holds the results for each value from 0 to Z.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Task Details</h2>
+            <div class="concept-box">
+                <h3>Project Setup</h3>
+                <ul>
+                    <li><strong>Download and Import:</strong> Download the source code attached to
+                        the task. Create a
+                        new Microsoft Visual Studio project and import the provided source code
+                        files: <a href="D:\WORK\SIT221\1.2D\8.2HD\Tester.cs" class="code-link">Tester.cs</a>, <a
+                            href="D:\WORK\SIT221\1.2D\8.2HD\TestGenerator.cs" class="code-link">TestGenerator.cs</a>,
+                        and <a href="D:\WORK\SIT221\1.2D\8.2HD\CoinRepresentation.cs"
+                            class="code-link">CoinRepresentation.cs</a>. Ensure the project compiles
+                        without errors.
+                    </li>
+                    <li><strong>CoinRepresentation Class:</strong> Explore the existing
+                        `CoinRepresentation` class to
+                        find the static method named `Solve`. This method must implement your
+                        algorithm.</li>
+                </ul>
+
+                <h3>Implement the Solve Method</h3>
+                <p>Create the `Solve` method to determine the number of ways to represent a given
+                    value Z with the
+                    available coins. The method should follow these steps:</p>
+                <ul>
+                    <li><strong>Base Case:</strong> If Z is less than 2, return 1.</li>
+                    <li><strong>Memoization Check:</strong> Check if the result for Z is already in
+                        the memo dictionary.
+                        If it is, return the stored result.</li>
+                    <li><strong>Recursive Calculation:</strong>
+                        <ul>
+                            <li>If Z is even, calculate the result as the sum of Solve(Z / 2) and
+                                Solve((Z / 2) - 1).
+                            </li>
+                            <li>If Z is odd, calculate the result as Solve((Z - 1) / 2).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Store in Memo:</strong> Save the computed result in the memo
+                        dictionary for future use.
+                    </li>
+                    <li><strong>Return Result:</strong> Return the computed result.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Example Scenarios</h2>
+            <div class="concept-box">
+                <ul>
+                    <li>For Z = 1, the algorithm returns 1. The only possible way is to use one coin
+                        of value 1.</li>
+                    <li>For Z = 6, the algorithm returns 3. The possible representations are {1, 1,
+                        2, 2}, {1, 1, 4},
+                        and {2, 4}.</li>
+                    <li>For Z = 12, the algorithm returns 7. The possible representations are {1, 1,
+                        1, 1, 2, 2, 2, 2},
+                        {1, 1, 1, 1, 4, 4}, {1, 1, 2, 2, 2, 4}, {1, 1, 2, 4, 4}, {2, 2, 2, 2, 4},
+                        {2, 4, 4}, {4, 8}.
+                    </li>
+                    <li>For Z = 47, the algorithm returns 2.</li>
+                    <li>For Z = 256, the algorithm returns 9.</li>
+                    <li>For Z = 8489289, the algorithm returns 6853.</li>
+                    <li>For Z = 1000000000, the algorithm returns 73411.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Explanation for Z = 12</h2>
+            <div class="concept-box">
+                <p>Let's explain how to get the answer for ( Z = 12 ) in a simple way:</p>
+                <p>Imagine you have a set of special coins, each with values like 1, 2, 4, and 8. To
+                    figure out how many
+                    different ways you can make 12 using these coins, we break it down into smaller
+                    parts and use some
+                    math magic (called recursion and memoization) to avoid doing the same
+                    calculations over and over.
+                </p>
+                <p>First, since 12 is even, we split it into 6 (which is half of 12) and 5 (one less
+                    than half of 12).
+                    Then, we do the same for 6 and 5, and keep going until we get to numbers like 1
+                    and 0, which are
+                    really easy to handle. By combining all these smaller parts, we find out there
+                    are 7 ways to make 12
+                    using these special coins. It's like building with LEGO blocks, starting with
+                    smaller pieces and
+                    putting them together to form the final structure.</p>
+                <div class="visualization">
+                    <img src="D:\WORK\SIT221\1.2D\8.2HD\vis2.png" alt="Example Calculation for Z = 12">
+                    <h4>Example Calculation for Z = 12</h4>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Testing the Implementation</h2>
+            <div class="concept-box">
+                <ul>
+                    <li><strong>Use the Tester Class:</strong> As you progress with the
+                        implementation, use the <a href="D:\WORK\SIT221\1.2D\8.2HD\Tester.cs"
+                            class="code-link">Tester.cs</a> class to test
+                        your algorithm for potential logical issues and runtime errors.</li>
+                    <li><strong>Test Cases:</strong> Start with the provided test cases and then
+                        create additional cases
+                        to ensure your algorithm handles all possible inputs correctly.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Conclusion</h2>
+            <div class="concept-box">
+                <p>By following these detailed steps, you will be able to implement and test the
+                    `Solve` method in the
+                    <a href="D:\WORK\SIT221\1.2D\8.2HD\CoinRepresentation.cs"
+                        class="code-link">CoinRepresentation.cs</a> class to determine the number of
+                    ways to represent a
+                    given value Z with the available coins. Understanding the underlying principles
+                    of recursion and
+                    memoization, focusing on efficient memory usage, and thoroughly testing your
+                    implementation will
+                    help you achieve the task objectives. Remember, while this guide provides one
+                    approach to the
+                    problem, you are encouraged to explore other methods and use your imagination to
+                    develop your
+                    solution.
+                </p>
+            </div>
+        </section>
+
+    </div>
+</body>
+
+</html>

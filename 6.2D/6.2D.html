@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box of Coins Task Guide</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #121212, #2c3e50);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2980b9, #2c3e50);
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            animation: fadeInLeft 1s ease-in-out;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+        }
+
+        ul li,
+        ol li {
+            margin: 10px 0;
+        }
+
+        .concept-box {
+            border: 1px solid #444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 15px;
+            background: #2b2b2b;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            animation: fadeInRight 1s ease-in-out;
+        }
+
+        .code-link {
+            font-family: monospace;
+            background: #333;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .visualization {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .visualization img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Box of Coins Task Guide</h1>
+    </header>
+    <div class="container">
+        <section>
+            <h2>Task Objective</h2>
+            <div class="concept-box">
+                <p>Design and implement an algorithm to solve a problem where Alex and Cindy are dividing boxes of coins
+                    in an optimal way to maximize their individual rewards. This task requires a deep understanding of
+                    algorithm design, dynamic programming, and optimization strategies. You will need to carefully
+                    consider the best approach to ensure that Alex gains the maximum possible advantage over Cindy when
+                    both are making optimal choices.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Background</h2>
+            <div class="concept-box">
+                <p>Alex and Cindy, two SIT221 students, found boxes full of coins during a treasure hunt. The boxes are
+                    lined up in a row, each with a different value. Cindy proposes a fair way to divide the treasure by
+                    taking turns to choose a box from either end of the line, allowing Alex to choose first. Alex wants
+                    to determine if this plan is advantageous for him and asks you to write a program to calculate the
+                    difference in their total rewards if both choose optimally. This scenario is a classic example of a
+                    game theory problem, where each participant aims to maximize their gain while anticipating the
+                    actions of the other participant. The challenge lies in devising a strategy that considers all
+                    possible choices and outcomes to ensure the best possible result for Alex.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Task Details</h2>
+            <div class="concept-box">
+                <h3>Project Setup</h3>
+                <ul>
+                    <li><strong>Download and Import:</strong> Download the source code attached to the task. Create a
+                        new Microsoft Visual Studio project and import the provided source code files: <a
+                            href="D:\WORK\SIT221\1.2D\6.2D\Tester.cs" class="code-link">Tester.cs</a>, <a
+                            href="D:\WORK\SIT221\1.2D\6.2D\TestGenerator.cs" class="code-link">Generator.cs</a>, and <a
+                            href="D:\WORK\SIT221\1.2D\6.2D\BoxOfCoins.cs" class="code-link">BoxOfCoins.cs</a>. Ensure
+                        the project compiles without errors. This setup will provide a framework within which you can
+                        develop and test your algorithm, ensuring that all necessary components are in place and
+                        functioning correctly.</li>
+                    <li><strong>BoxOfCoins Class:</strong> Explore the existing `BoxOfCoins` class to find the static
+                        method named `Solve`. This method must implement your algorithm. Understanding the structure and
+                        functionality of the `BoxOfCoins` class is crucial as it forms the basis of your implementation.
+                        Pay close attention to the method signature and how it interacts with other parts of the class.
+                    </li>
+                </ul>
+
+                <h3>Implement the Solve Method</h3>
+                <ul>
+                    <li><strong>Method Signature:</strong> The `Solve` method accepts a single argument: an array of
+                        integers representing the value of each box of coins in the order they are lined up. The method
+                        must return an integer representing how much more reward Alex will get than Cindy if both choose
+                        optimally. This method is the heart of your solution and must be designed to efficiently handle
+                        various scenarios and inputs.</li>
+                    <li><strong>Example Inputs and Outputs:</strong></li>
+                    <ul>
+                        <li>For a given array `[7, 2]`, the algorithm must return `5`. Alex will choose the box with
+                            value `7`, and Cindy will take the box with value `2`. The result is `7 - 2 = 5`.</li>
+                        <li>For a given array `[2, 7, 3]`, the algorithm must return `-2`. Regardless of whether Alex
+                            chooses the box with value `2` or `3`, Cindy will choose the box with value `7`, and Alex
+                            will take the remaining box. The result is `(2+3) - 7 = -2`. This example demonstrates the
+                            importance of considering the opponent's optimal choices when making decisions.</li>
+                        <li>For a given array `[1000, 1000, 1000, 1000, 1000]`, the algorithm must return `1000`. Alex
+                            will end up with three boxes, and Cindy with two. The result is `(1000+1000+1000) -
+                            (1000+1000) = 1000`. In this case, the values of the boxes are identical, making the problem
+                            straightforward but emphasizing the importance of turn order.</li>
+                        <li>For a given array `[823, 912, 345, 100000, 867, 222, 991, 3, 40000]`, the algorithm must
+                            return `-58111`. This example illustrates the complexity of the problem when the values of
+                            the boxes vary significantly, requiring careful calculation and strategy to maximize Alex's
+                            advantage.</li>
+                    </ul>
+                </ul>
+
+                <h3>Algorithmic Approach</h3>
+                <p><strong>Dynamic Programming (DP):</strong> The recommended approach for solving this problem
+                    efficiently is dynamic programming. This technique is suitable for optimization problems where the
+                    solution can be constructed from solutions to subproblems. Dynamic programming involves breaking
+                    down the problem into smaller, manageable parts and solving each part optimally to build up the
+                    solution to the original problem.</p>
+                <ul>
+                    <li><strong>DP Table:</strong> Create a 2D array `diff` where `diff[i, j]` represents the maximum
+                        difference in value Alex can achieve over Cindy for the subarray `boxes[i..j]`. This table will
+                        store the results of subproblems, allowing the algorithm to reference these results and avoid
+                        redundant calculations.</li>
+                    <li><strong>Base Case:</strong> Initialize the base cases where only one box is considered, i.e.,
+                        `diff[i, i] = boxes[i]`. This represents the simplest scenario where Alex has only one box to
+                        choose from, and the value of that box is the difference.</li>
+                    <li><strong>Recursive Case:</strong> For subarrays of length greater than one, compute the values
+                        using the formula: `diff[i, j] = max(boxes[i] - diff[i+1, j], boxes[j] - diff[i, j-1])`. This
+                        formula considers the optimal choices Alex can make (either picking the box at the start or the
+                        end of the subarray) and the optimal response Cindy would make. By comparing the outcomes of
+                        these choices, the algorithm ensures that Alex's choice is always the best possible one given
+                        the circumstances.</li>
+                </ul>
+
+                <h3>Memory Usage</h3>
+                <p>The algorithm uses an `n x n` 2D array where `n` is the number of boxes. This leads to a space
+                    complexity of `O(n^2)`. Each cell in the array stores an integer representing the maximum difference
+                    in value that Alex can achieve over Cindy for the subarray `boxes[i..j]`. The time complexity is
+                    also `O(n^2)` because the algorithm fills up the entire 2D array by considering all possible
+                    subarrays and their respective optimal values. The efficiency of the algorithm in terms of both time
+                    and space is crucial for handling large inputs within reasonable limits.</p>
+
+                <h3>Working of the Code</h3>
+                <div class="visualization">
+                    <h4>Initialization of the DP Table</h4>
+                    <img src="D:\WORK\SIT221\1.2D\6.2D\vis1.png" alt="Initialization of DP Table">
+                </div>
+                <p>During initialization, the DP table is filled with the values of individual boxes along the diagonal,
+                    representing subarrays of length 1. This step is essential for setting up the base cases that the
+                    algorithm will build upon. Each diagonal element `diff[i, i]` is set to `boxes[i]`, indicating that
+                    if Alex only has one box to choose from, the value of that box is the difference.</p>
+
+                <div class="visualization">
+                    <h4>Filling the DP Table Using Dynamic Programming</h4>
+                    <img src="D:\WORK\SIT221\1.2D\6.2D\vis2.png" alt="Filling the DP Table Using Dynamic Programming">
+                </div>
+                <p>To fill the DP table, the algorithm iterates through subarrays of increasing length and computes the
+                    maximum difference for each subarray using the formula: `diff[i, j] = max(boxes[i] - diff[i+1, j],
+                    boxes[j] - diff[i, j-1])`. This process involves examining each subarray from smallest to largest
+                    and determining the best possible choice for Alex at each step. By doing so, the algorithm ensures
+                    that it accounts for all possible scenarios and outcomes, building up the solution from the base
+                    cases to the final result.</p>
+                <ul>
+                    <li><strong>Step-by-Step Process:</strong></li>
+                    <ul>
+                        <li>For subarray length 2, calculate the difference for each pair of adjacent boxes. This step
+                            involves comparing the outcomes of picking either the first or the last box in the subarray
+                            and updating the DP table accordingly.</li>
+                        <li>For subarray length 3, calculate the difference considering all combinations of three boxes.
+                            This step builds on the previous calculations and considers the additional complexity
+                            introduced by the extra box.</li>
+                        <li>Continue this process until the entire DP table is filled. Each step involves considering
+                            subarrays of increasing length and updating the DP table with the optimal choices for Alex,
+                            ensuring that the final result represents the best possible outcome given the entire array
+                            of boxes.</li>
+                    </ul>
+                    <li><strong>Final Result:</strong> The final result is obtained from the DP table, representing the
+                        maximum difference in value Alex can achieve over Cindy for the entire array of boxes. This
+                        result provides the answer to the original problem, showing how much more reward Alex will get
+                        compared to Cindy if both choose boxes optimally.</li>
+                </ul>
+                <p>For a more detailed explanation on dynamic programming, check out this <a
+                        href="https://www.geeksforgeeks.org/dynamic-programming/">GeeksforGeeks article</a> and the
+                    following video. <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/oBt53YbR9Kk?si=jNXnXFKeOFnqRZeg" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Testing</h2>
+            <div class="concept-box">
+                <ul>
+                    <li><strong>Use the Tester Class:</strong> As you progress with the implementation, use the <a
+                            href="D:\WORK\SIT221\1.2D\6.2D\Tester.cs" class="code-link">Tester</a> class to test your
+                        algorithm for potential logical issues and runtime errors. Testing is crucial to ensure the
+                        correctness and efficiency of your algorithm. The `Tester` class provides a framework for
+                        systematically testing your implementation, helping you identify and fix any issues that arise
+                        during the development process.</li>
+                    <li><strong>Test Cases:</strong> Start with the provided test cases and then create additional cases
+                        to cover edge scenarios such as arrays with one box, arrays with two boxes, and arrays with
+                        maximum values to ensure your algorithm handles all possible inputs correctly. Testing a wide
+                        range of cases ensures that your algorithm is robust and can handle various inputs efficiently.
+                        Consider edge cases and potential pitfalls to ensure that your solution is comprehensive and
+                        reliable.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Flexibility in Algorithmic Approach</h2>
+            <div class="concept-box">
+                <p>While the dynamic programming approach is recommended, it is not the only method to solve this
+                    problem. Other techniques such as recursive backtracking with memoization can be explored.
+                    Memoization can help store intermediate results to avoid redundant calculations and improve
+                    efficiency. Programmers are encouraged to explore and experiment with different approaches. The goal
+                    is to find an efficient and correct solution, and creativity in problem-solving should be
+                    encouraged. For more information on memoization, refer to this <a
+                        href="https://www.interviewcake.com/concept/java/memoization">Interview Cake article</a>.</p>
+                <p>Exploring different algorithmic approaches can provide valuable insights and enhance your
+                    understanding of the problem. By experimenting with various techniques, you can discover alternative
+                    solutions that may offer better performance or simplicity. Memoization, for example, can
+                    significantly reduce the time complexity of recursive algorithms by storing the results of
+                    previously computed subproblems. This approach can be particularly useful when dealing with large
+                    inputs or complex problems where redundant calculations can be costly.</p>
+                <p>Recursive backtracking is another technique that can be used to solve this problem. This approach
+                    involves exploring all possible combinations of choices and backtracking when a suboptimal choice is
+                    made. While this method can be less efficient than dynamic programming, it provides a thorough
+                    exploration of the solution space and can be useful for understanding the problem's structure and
+                    constraints. By combining memoization with recursive backtracking, you can improve the efficiency of
+                    this approach and achieve a balance between thorough exploration and computational efficiency.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Conclusion</h2>
+            <div class="concept-box">
+                <p>By following these detailed steps, you will be able to implement and test the `Solve` method in the
+                    `BoxOfCoins` class to determine how much more reward Alex will get compared to Cindy if both choose
+                    boxes optimally. Understanding the underlying principles of dynamic programming, focusing on
+                    efficient memory usage, and thoroughly testing your implementation will help you achieve the task
+                    objectives. Remember, while this guide provides one approach to the problem, you are encouraged to
+                    explore other methods and use your imagination to develop your solution. The process of solving this
+                    problem will enhance your skills in algorithm design, optimization, and dynamic programming,
+                    providing valuable experience that can be applied to a wide range of computational problems.</p>
+                <p>The importance of a structured and methodical approach to problem-solving cannot be overstated. By
+                    breaking down the problem into smaller, manageable parts and solving each part optimally, you can
+                    build up the solution to the original problem. This approach not only ensures correctness but also
+                    improves efficiency and scalability, making it suitable for real-world applications where
+                    performance and reliability are crucial.</p>
+                <p>As you work on this task, keep in mind the broader context of algorithm design and optimization. The
+                    principles and techniques you learn here can be applied to many other problems, from game theory and
+                    decision-making to resource allocation and scheduling. By mastering these concepts, you will be
+                    well-equipped to tackle complex computational challenges and develop innovative solutions that push
+                    the boundaries of what is possible.</p>
+                <p>In conclusion, the Box of Coins task is an excellent opportunity to deepen your understanding of
+                    dynamic programming, optimization, and algorithm design. By carefully considering the problem,
+                    exploring different approaches, and thoroughly testing your implementation, you can develop a
+                    solution that not only meets the task objectives but also enhances your skills and knowledge.
+                    Embrace the challenge, experiment with different techniques, and strive for excellence in your work.
+                    The experience and insights you gain from this task will serve you well in your future endeavors and
+                    help you become a more proficient and innovative problem solver.</p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

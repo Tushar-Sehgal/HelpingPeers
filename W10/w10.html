@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashing Techniques</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #121212, #2c3e50);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2980b9, #2c3e50);
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            animation: fadeInLeft 1s ease-in-out;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+        }
+
+        ul li,
+        ol li {
+            margin: 10px 0;
+        }
+
+        .concept-box {
+            border: 1px solid #444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 15px;
+            background: #2b2b2b;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            animation: fadeInRight 1s ease-in-out;
+        }
+
+        .code-link {
+            font-family: monospace;
+            background: #333;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .visualization {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .visualization img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Understanding Hashing Techniques</h1>
+    </header>
+    <div class="container">
+        <h2>Hashing</h2>
+        <div class="concept-box">
+            <p><strong>Underlying Principle:</strong></p>
+            <p>Hashing is a technique that maps data of arbitrary size to data of fixed size. The output, known as the
+                hash value or hash code, uniquely identifies the input data. A hash function performs this mapping, and
+                a hash table uses this function to store and retrieve data efficiently.</p>
+            <p><strong>Explanation:</strong></p>
+            <p>Imagine you are a librarian responsible for organizing books in a large library. Instead of placing books
+                randomly on shelves, you decide to use a unique code (hash) to determine where each book should go. This
+                code is generated using the book's title or author’s name. When someone asks for a book, you use this
+                code to locate the book quickly, without scanning the entire library.</p>
+            <p>In computer science, hashing serves a similar purpose. It allows quick data retrieval by mapping keys
+                (like names or IDs) to specific locations in a hash table. A well-designed hash function minimizes
+                collisions (situations where different keys produce the same hash value) and distributes keys evenly
+                across the table.</p>
+            <p>Hashing is fundamental to many applications, such as data retrieval, password storage, and digital
+                signatures. In password storage, for example, instead of storing the actual passwords, systems store the
+                hashed values of passwords. When a user enters a password, the system hashes the entered password and
+                compares it with the stored hash value. This enhances security as the actual passwords are never stored.
+            </p>
+            <p>In digital signatures, hashing ensures the integrity of the message. A message is hashed, and the hash
+                value is encrypted with the sender's private key to create a digital signature. The recipient can verify
+                the message by decrypting the signature with the sender's public key and comparing the resulting hash
+                value with the hash value of the received message.</p>
+            <p>The effectiveness of a hash function is measured by its ability to uniformly distribute data across the
+                hash table and minimize collisions. Common hash functions include division-remainder method,
+                multiplication method, and cryptographic hash functions like MD5, SHA-1, and SHA-256.</p>
+            <p>Hashing is not just limited to these applications. It plays a critical role in many other areas, such as
+                load balancing in distributed systems, cache management in databases, and indexing in search engines. In
+                load balancing, hashing can distribute requests evenly across multiple servers, ensuring no single
+                server is overwhelmed. In cache management, hashing helps map data to cache locations, improving data
+                retrieval speed. In search engines, hashing is used to index web pages efficiently, enabling quick
+                searches.</p>
+            <p>There are various types of hash functions, each with its own strengths and weaknesses. The
+                division-remainder method, for instance, uses the modulo operation to determine the index in the hash
+                table. This method is simple and efficient but can lead to clustering if the hash table size is not a
+                prime number. The multiplication method, on the other hand, multiplies the key by a constant factor and
+                extracts the fractional part to determine the index. This method is less prone to clustering but
+                requires careful selection of the constant factor to ensure uniform distribution.</p>
+            <p>Cryptographic hash functions, such as MD5, SHA-1, and SHA-256, are designed to be highly resistant to
+                collisions and provide a fixed-size output regardless of the input size. These functions are widely used
+                in security applications, such as digital signatures, message integrity checks, and password hashing.
+                However, due to vulnerabilities discovered in some cryptographic hash functions (e.g., MD5 and SHA-1),
+                more secure alternatives like SHA-256 and SHA-3 are recommended.</p>
+            <p>Hashing also has applications in data structures beyond hash tables. For example, Bloom filters use
+                hashing to test whether an element is a member of a set. A Bloom filter is a space-efficient
+                probabilistic data structure that can return false positives but never false negatives. It uses multiple
+                hash functions to map elements to a bit array. When checking for membership, the Bloom filter verifies
+                if all the bits corresponding to the hash values are set. If any bit is not set, the element is not in
+                the set. Otherwise, the element may be in the set with a certain probability of false positives.</p>
+        </div>
+        <div class="visualization">
+            <h3>Visualization:</h3>
+            <img src="vis1.png" alt="Hash Function Diagram">
+            <img src="vis2.png" alt="Hash Table Example">
+        </div>
+        <p>For more information, visit <a href="https://en.wikipedia.org/wiki/Hash_function" target="_blank">Wikipedia:
+                Hash function</a> or <a href="https://www.geeksforgeeks.org/what-is-hashing/"
+                target="_blank">GeeksforGeeks: Hash function</a></p>
+        <p>Watch this video for a detailed explanation:</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0M_kIqhwbFo?si=RL8Zworm6kk-jV9V"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <h2>Chaining</h2>
+        <div class="concept-box">
+            <p><strong>Underlying Principle:</strong></p>
+            <p>Chaining is a collision resolution method in a hash table. When multiple keys hash to the same index,
+                chaining stores them in a linked list at that index. This way, all entries with the same hash value can
+                coexist without overwriting each other.</p>
+            <p><strong>Explanation:</strong></p>
+            <p>Continuing the librarian analogy, suppose two books are assigned the same code due to a collision.
+                Instead of trying to find a new location for the second book, you place both books in the same shelf but
+                in different slots (using dividers). Each slot within the shelf acts like a node in a linked list.</p>
+            <p>In chaining, each slot in the hash table points to a linked list. When a collision occurs, the new data
+                is appended to the list at that slot. This ensures that all entries with the same hash value can be
+                stored and retrieved efficiently.</p>
+            <p>Chaining offers several advantages, such as simplicity and ease of implementation. It handles collisions
+                effectively, as each slot in the hash table can store multiple entries. Additionally, chaining allows
+                for dynamic resizing of the hash table without the need for rehashing existing entries. When the hash
+                table needs to be resized, only the new slots need to be allocated, and the existing linked lists remain
+                unchanged.</p>
+            <p>However, chaining also has some drawbacks. As the number of entries in the hash table increases, the
+                linked lists at each slot may become longer, leading to longer search times. This can be mitigated by
+                keeping the load factor (number of entries divided by the number of slots) within an optimal range. When
+                the load factor exceeds a certain threshold, the hash table can be resized, and the entries rehashed to
+                distribute them more evenly.</p>
+            <p>Another potential issue with chaining is memory overhead. Each entry in a linked list requires additional
+                memory for the pointer to the next node. This overhead can be significant in applications with a large
+                number of entries. To reduce memory overhead, a variation of chaining called "open addressing" can be
+                used. In open addressing, all entries are stored within the hash table itself, and collisions are
+                resolved by probing for the next available slot.</p>
+            <p>Chaining also allows for more complex operations, such as deletion. In a hash table using chaining,
+                deletion is straightforward. To delete an entry, the linked list at the corresponding slot is traversed
+                to find the entry, and it is removed from the list. In open addressing, deletion is more complex, as it
+                may require rehashing of subsequent entries to fill the gap left by the deleted entry.</p>
+            <p>There are various techniques to optimize chaining, such as using self-balancing binary search trees
+                (e.g., AVL trees or Red-Black trees) instead of linked lists at each slot. This can improve search times
+                by maintaining a balanced structure within each slot. Additionally, using hybrid approaches that combine
+                chaining and open addressing can provide a good balance between memory overhead and search efficiency.
+            </p>
+            <p>Chaining is widely used in many applications, such as databases and file systems. In databases, hash
+                indexes use chaining to store and retrieve records efficiently. Each slot in the hash index points to a
+                linked list of records with the same hash value. This allows for quick retrieval of records based on
+                their hash values. In file systems, hashing is used to manage file allocation tables (FAT) and directory
+                structures. Chaining helps resolve collisions when multiple files or directories hash to the same
+                location.</p>
+            <p>One common application of chaining is in the implementation of associative arrays or dictionaries. An
+                associative array maps keys to values, and hashing is used to determine the index for each key. When a
+                collision occurs, chaining stores the colliding entries in a linked list at the corresponding slot. This
+                ensures efficient storage and retrieval of key-value pairs, even in the presence of collisions.</p>
+            <p>Chaining is also used in distributed hash tables (DHTs), which are used in peer-to-peer networks and
+                distributed systems. DHTs distribute data across multiple nodes in a network, and hashing is used to
+                determine the node responsible for storing each piece of data. Chaining helps manage collisions when
+                multiple pieces of data hash to the same node, ensuring efficient data storage and retrieval in a
+                distributed environment.</p>
+        </div>
+        <div class="visualization">
+            <h3>Visualization:</h3>
+            <img src="vis3.png" alt="Collision Example">
+        </div>
+        <p>For more information, visit <a href="https://en.wikipedia.org/wiki/Hash_table#Separate_chaining"
+                target="_blank">Wikipedia: Separate chaining</a></p>
+        <p>Watch this video for a detailed explanation:</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/JQhciTuD3E8?si=SwMdRR5wgnOSWQlH"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <h2>Probing</h2>
+        <div class="concept-box">
+            <p><strong>Underlying Principle:</strong></p>
+            <p>Probing is a technique to resolve collisions by finding an alternative slot within the hash table. When a
+                collision occurs, probing searches for the next available slot based on a probing sequence. We will
+                focus on linear probing, where the next slot is checked sequentially until an empty slot is found.</p>
+            <p><strong>Explanation:</strong></p>
+            <p>In the librarian analogy, if the assigned shelf (slot) is already full, you check the next shelf in line.
+                This process continues until you find an empty shelf to place the book. This approach ensures that each
+                book has a unique location.</p>
+            <p>In linear probing, if a collision occurs at index <code>i</code>, the algorithm checks the next index
+                <code>(i+1) % table_size</code>, then <code>(i+2) % table_size</code>, and so on, until an empty slot is
+                found. This method is simple and easy to implement but can lead to clustering, where many entries are
+                stored in adjacent slots, causing longer search times.</p>
+            <p>For instance, if you have a hash table of size 5 and you are inserting the values 10, 11, 12, 13, 14, and
+                15, and all these values hash to index 0, the linear probing technique will try to place the values in
+                the next available slots. So, 10 will go to index 0, 11 to index 1, 12 to index 2, 13 to index 3, and so
+                on. When 15 tries to be inserted, it will find that all slots are occupied, and an array full condition
+                is encountered.</p>
+            <p>Linear probing is efficient for handling collisions but can cause primary clustering, where a group of
+                consecutive slots gets filled up, leading to longer search times for values within this cluster.
+                Secondary clustering can also occur, where different keys that hash to the same initial slot follow the
+                same probing sequence, causing collisions to occur in the same set of slots.</p>
+            <p>To mitigate clustering, variations of probing such as quadratic probing and double hashing can be used.
+                In quadratic probing, the interval between probes increases quadratically (i.e., 1, 4, 9, 16, ...),
+                reducing primary clustering but potentially causing secondary clustering. Double hashing uses a second
+                hash function to determine the interval between probes, minimizing both primary and secondary
+                clustering.</p>
+            <p>For example, in double hashing, if a collision occurs at index <code>i</code>, the algorithm uses a
+                second hash function to calculate the interval <code>j</code> and checks the next slot at index
+                <code>(i + j) % table_size</code>, then <code>(i + 2j) % table_size</code>, and so on. This approach
+                ensures a more uniform distribution of keys and reduces clustering.</p>
+            <p>Probing techniques are widely used in applications where memory overhead is a concern, as they do not
+                require additional memory for linked lists. However, the performance of probing techniques depends on
+                the load factor and the distribution of keys. Higher load factors and poor hash functions can lead to
+                increased clustering and longer search times.</p>
+            <p>In open addressing, probing techniques can be combined with other collision resolution methods to improve
+                performance. For example, Robin Hood hashing is a variation of open addressing that aims to equalize the
+                search times for all entries. When a collision occurs, Robin Hood hashing swaps the colliding entry with
+                an existing entry if the existing entry has a shorter probe sequence. This ensures that all entries have
+                similar search times, reducing the overall search time variance.</p>
+            <p>Probing techniques are also used in various data structures and algorithms, such as hash tables, Bloom
+                filters, and caching. In hash tables, probing ensures efficient storage and retrieval of key-value
+                pairs. In Bloom filters, probing helps map elements to multiple bits in the bit array, reducing the
+                probability of false positives. In caching, probing techniques can be used to manage cache replacement
+                policies, ensuring that frequently accessed data remains in the cache.</p>
+            <p>In summary, probing is a versatile technique for collision resolution in hash tables and other data
+                structures. While it has some limitations, such as clustering, it can be optimized using variations like
+                quadratic probing and double hashing. Understanding the underlying principles and trade-offs of probing
+                techniques is essential for designing efficient and robust data structures and algorithms.</p>
+        </div>
+        <div class="visualization">
+            <h3>Visualization:</h3>
+            <img src="vis4.png" alt="Linear Probing Example">
+        </div>
+        <p>For more information, visit <a href="https://en.wikipedia.org/wiki/Linear_probing" target="_blank">Wikipedia:
+                Linear probing</a></p>
+        <p>Watch this video for a detailed explanation:</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/turKQUPrAuA?si=G_D-73K6Ln2TZ5YW"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+</body>
+
+</html>
